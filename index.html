@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TILLU COLLEGE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: #1e3a8a;
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            color: #1e3a8a;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .main-nav a:hover {
+            color: #1e3a8a;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1e3a8a;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(30, 58, 138, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f4f8" width="1200" height="800"/><rect fill="%231e3a8a" x="0" y="600" width="1200" height="200"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 0 100px;
+            margin-top: 120px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: #ef4444;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-header {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #f0f0f0;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Quick Stats */
+        .stats {
+            background: #f8fafc;
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Main Content Sections */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image .placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Features Grid */
+        .features {
+            background: #f8fafc;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: #1e3a8a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Chairman Section */
+        .chairman {
+            background: white;
+        }
+
+        .chairman-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .chairman-image {
+            text-align: center;
+        }
+
+        .chairman-image .placeholder {
+            width: 250px;
+            height: 300px;
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+
+        .chairman-info h3 {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .chairman-title {
+            font-size: 1.1rem;
+            color: #ef4444;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .chairman-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Why ABR Section */
+        .why-abr {
+            background: #f8fafc;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .why-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .why-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .why-icon {
+            width: 80px;
+            height: 80px;
+            background: #1e3a8a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .why-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+
+        .why-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Departments Grid */
+        .departments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .department-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid #1e3a8a;
+        }
+
+        .department-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .department-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .department-info {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e3a8a;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            background: #1e3a8a;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1e40af;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3a8a;
+            color: white;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .footer-section p, .footer-section li {
+            margin-bottom: 10px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #3b82f6;
+            padding-top: 20px;
+            text-align: center;
+            color: #cbd5e1;
+        }
+
+        /* Notifications */
+        .notifications {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .notifications h4 {
+            color: #ef4444;
+            margin-bottom: 15px;
+        }
+
+        .notification-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #ef4444;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .notification-item:hover {
+            transform: translateX(5px);
+        }
+
+        .notification-item a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .notification-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+
+            .main-nav.active {
+                display: block;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-info {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .nav-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .chairman-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .features-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-info">
+                    <div class="contact-info">
+                        <span>📞 +91-7207562717</span>
+                        <span>⏰ M-F: 8:30am - 7:00pm</span>
+                    </div>
+                    <div>
+                        <span>Addanki-2 Village, Ongole Road, Addanki</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="nav-header">
+                <div class="logo" onclick="scrollToSection('home')">
+                    <div style="width: 38px; height: 60px; background: #1e3a8a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">TEC</div>
+                    <div class="logo-text">
+                        <h1>TILLU COLLEGE</h1>
+                        <p>College of Engineering and Technology</p>
+                    </div>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+                <nav class="main-nav" id="mainNav">
+                    <ul>
+                        <li><a onclick="scrollToSection('home')">Home</a></li>
+                        <li><a onclick="scrollToSection('about')">About</a></li>
+                        <li><a onclick="openModal('academicsModal')">Academics</a></li>
+                         <li><a onclick="openModal('facultyModal')">Faculty</a></li>
+                        <li><a onclick="openModal('placementsModal')">Placements</a></li>
+                        <li><a onclick="openModal('admissionsModal')">Admissions</a></li>
+                        <li><a onclick="scrollToSection('contact')">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to TILLU COLLEGE</h1>
+                <p>Tillu College of Engineering and Technology was established in the year 2025 and sponsored by Tillu Educational Society to provide higher education to build a career in the field of Engineering and Management. Our college is approved by the reputed AICTE, and is affiliated with JNTU, Kakinada.</p>
+                <button class="cta-button" onclick="scrollToSection('about')">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item" onclick="openModal('establishmentModal')">
+                    <div class="stat-number">2025</div>
+                    <div class="stat-label">Established</div>
+                </div>
+                <div class="stat-item" onclick="openModal('approvalModal')">
+                    <div class="stat-number">AICTE</div>
+                    <div class="stat-label">Approved</div>
+                </div>
+                <div class="stat-item" onclick="openModal('affiliationModal')">
+                    <div class="stat-number">JNTU</div>
+                    <div class="stat-label">Affiliated</div>
+                </div>
+                <div class="stat-item" onclick="openModal('placementStatsModal')">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Placement Record</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about content-section">
+        <div class="container">
+            <h2 class="section-title">About Tillu College</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>The Tillu College of Engineering and Technology was established in the year 2025, and sponsored by ABR Educational Society to promote technological education to meet the requirements of a developing nation in the context of global concern at the threshold of the twenty first century.</p>
+                    <p>A team of educated, enlightened, experienced technocrats with vision, firmly determined to promote high quality education is striving to provide every facility for achieving excellence. The college is one of the best colleges in and around the Prakasam Dist. The Standards of teaching are very high when compared with the other colleges.</p>
+                    <button class="cta-button" onclick="openModal('visionMissionModal')" style="margin-top: 20px;">Our Vision & Mission</button>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=500&h=300&fit=crop" alt="ABR College Campus" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features content-section">
+        <div class="container">
+            <h2 class="section-title">Our Key Strengths</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in" onclick="openModal('academicsModal')">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Academics</h3>
+                    <p class="feature-description">TILLU College strives to create and inspire new standards of excellence in Education supported by body of dynamic and highly-qualified faculty. Stringent Academic Standards, Industry compliant Teaching Methodology.</p>
+                </div>
+                <div class="feature-card fade-in" onclick="openModal('facultyModal')">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3 class="feature-title">Faculty</h3>
+                    <p class="feature-description">Our college is equipped with state of art labs, library, sport facilities, learning centers and Hostels with experienced and qualified faculty members.</p>
+                </div>
+                <div class="feature-card fade-in" onclick="openModal('placementsModal')">
+                    <div class="feature-icon">💼</div>
+                    <h3 class="feature-title">Placements</h3>
+                    <p class="feature-description">TILLU college has its own unique and innovative corporate relations, placements, and training department. The Training & Placement Cell provides the infra-structural facilities to conduct group discussions, tests and interviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chairman Section -->
+    <section class="chairman content-section">
+        <div class="container">
+            <h2 class="section-title">Our Leadership</h2>
+            <div class="chairman-content">
+                <div class="chairman-image">
+                    <div class="placeholder"><img src="women3.jpg" alt="ABR College Campus" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+</div>
+                </div>
+                <div class="chairman-info">
+                    <h3>TATANABOINA BHAVANI SANKAR</h3>
+                    <p class="chairman-title">Chairman & Correspondent</p>
+                    <p class="chairman-description">Tatanaboina Bhavani Sankar, a well known educationalist and reformer is the chairman & correspondent of ABR College of Engineering and Technology. He has contributed to the enrichment of the program of building up a new perspective with reference to the role of future world citizens in shaping the destiny of the nation.</p>
+                    <button class="cta-button" onclick="openModal('leadershipModal')" style="margin-top: 20px;">Meet Our Team</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Excellence -->
+    <section class="features content-section" style="background: #fef9e7;">
+        <div class="container">
+            <h2 class="section-title">Academic Excellence</h2>
+            <p class="section-subtitle">Since inception this institution has been synonymous with academic excellence and student discipline. This has been made possible by close supervision, excellent coaching and honing of talent among the bright students who are expected to notch top honors.</p>
+            
+            <!-- Notifications -->
+            <div class="notifications">
+                <h4>Recent Notifications</h4>
+                <div class="notification-item" onclick="openModal('examNotificationModal')">
+                    <a href="#">II B.TECH II SEMESTER R23 REGULATION I MID ONLINE QUIZ EXAMINATIONS FEBRUARY 2025</a>
+                </div>
+                <div class="notification-item" onclick="openModal('feeNotificationModal')">
+                    <a href="#">B.TECH BIPC & B.TECH AGPHFE Exam Fee Notification</a>
+                </div>
+                <div class="notification-item" onclick="openModal('academicCalendarModal')">
+                    <a href="#">Academic Calendar 2025-26 Released</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why ABR Section -->
+    <section class="why-abr content-section">
+        <div class="container">
+            <h2 class="section-title">Why Tillu College?</h2>
+            <div class="why-grid">
+                <div class="why-item fade-in" onclick="openModal('facilitiesModal')">
+                    <div class="why-icon">🏢</div>
+                    <h3 class="why-title">World-Class Facilities</h3>
+                    <p class="why-description">Modern laboratories, well-equipped library, sports complex, hostels, and cafeteria provide students with all necessary amenities for holistic development and comfortable campus life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="features content-section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Ready to join ABR College? Contact us for admissions, inquiries, or campus visits.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start;">
+                <div>
+                    <h3 style="color: #1e3a8a; margin-bottom: 20px; font-size: 1.5rem;">Contact Information</h3>
+                    <div style="background: #f8fafc; padding: 30px; border-radius: 10px;">
+                        <p style="margin-bottom: 15px;"><strong>📍 Address:</strong><br>
+                        Addanki Village,<br>
+                        Ongole Road, Addanki Mandal,<br>
+                        Prakasam District, Andhra Pradesh</p>
+                        
+                        <p style="margin-bottom: 15px;"><strong>📞 Phone:</strong> +91-7207562717</p>
+                        <p style="margin-bottom: 15px;"><strong>✉️ Email:</strong> info@TEC.edu.in</p>
+                        <p style="margin-bottom: 15px;"><strong>⏰ Office Hours:</strong> M-F: 8:30am - 7:00pm</p>
+                        
+                        <button class="cta-button" onclick="openModal('campusVisitModal')" style="margin-top: 20px;">Schedule Campus Visit</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: #1e3a8a; margin-bottom: 20px; font-size: 1.5rem;">Send us a Message</h3>
+                    <form onsubmit="submitContactForm(event)" style="background: linear-gradient(rgba(248, 250, 252, 0.95), rgba(248, 250, 252, 0.95)), url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=400&fit=crop'); background-size: cover; background-position: center; padding: 30px; border-radius: 10px;">
+                        <div style="position: relative; z-index: 2;">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="inquiry">Inquiry Type</label>
+                                <select id="inquiry" required>
+                                    <option value="">Select an option</option>
+                                    <option value="admissions">Admissions</option>
+                                    <option value="academics">Academic Programs</option>
+                                    <option value="placements">Placements</option>
+                                    <option value="facilities">Campus Facilities</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tillu College</h3>
+                    <p>TilluCollege of Engineering and Technology was established in 2025 to provide quality higher education in Engineering and Management.</p>
+                    <p><strong>College Hours:</strong><br>M-F: 8:30am - 7:00pm</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a onclick="scrollToSection('about')">About Us</a></li>
+                        <li><a onclick="openModal('academicsModal')">Academics</a></li>
+                        <li><a onclick="openModal('placementsModal')">Placements</a></li>
+                        <li><a onclick="openModal('admissionsModal')">Admissions</a></li>
+                        <li><a onclick="openModal('facilitiesModal')">Facilities</a></li>
+                        <li><a onclick="openModal('campusVisitModal')">Campus Visit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Academic Programs</h3>
+                    <ul>
+                        <li><a onclick="openModal('cseModal')">Computer Science</a></li>
+                        <li><a onclick="openModal('eceModal')">Electronics & Communication</a></li>
+                        <li><a onclick="openModal('eeeModal')">Electrical Engineering</a></li>
+                        <li><a onclick="openModal('mechModal')">Mechanical Engineering</a></li>
+                        <li><a onclick="openModal('civilModal')">Civil Engineering</a></li>
+                        <li><a onclick="openModal('mbaModal')">MBA Program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><strong>Address:</strong><br>
+                    Addanki Village,<br>
+                    Ongole Road, Addanki Mandal,<br>
+                    Prakasam District,<br>
+                    Andhra Pradesh</p>
+                    <p><strong>Phone:</strong> +91-7207562717</p>
+                    <p><strong>Email:</strong> info@tec.edu.in</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tillu College of Engineering and Technology. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    
+    <!-- Academics Modal -->
+    <div id="academicsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Academic Programs</h2>
+                <span class="close" onclick="closeModal('academicsModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Engineering Programs (B.Tech)</h3>
+                <div class="departments-grid">
+                    <div class="department-card" onclick="openModal('cseModal')">
+                        <div class="department-name">Computer Science & Engineering</div>
+                        <div class="department-info">60 seats • 4 years • AICTE Approved</div>
+                    </div>
+                    <div class="department-card" onclick="openModal('eceModal')">
+                        <div class="department-name">Electronics & Communication</div>
+                        <div class="department-info">60 seats • 4 years • AICTE Approved</div>
+                    </div>
+                    <div class="department-card" onclick="openModal('eeeModal')">
+                        <div class="department-name">Electrical & Electronics</div>
+                        <div class="department-info">60 seats • 4 years • AICTE Approved</div>
+                    </div>
+                    <div class="department-card" onclick="openModal('mechModal')">
+                        <div class="department-name">Mechanical Engineering</div>
+                        <div class="department-info">60 seats • 4 years • AICTE Approved</div>
+                    </div>
+                    <div class="department-card" onclick="openModal('civilModal')">
+                        <div class="department-name">Civil Engineering</div>
+                        <div class="department-info">60 seats • 4 years • AICTE Approved</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 30px;">Management Program</h3>
+                <div class="departments-grid">
+                    <div class="department-card" onclick="openModal('mbaModal')">
+                        <div class="department-name">Master of Business Administration</div>
+                        <div class="department-info">60 seats • 2 years • AICTE Approved</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 30px; background: #f0f8ff; padding: 20px; border-radius: 10px;">
+                    <strong>Key Features:</strong><br>
+                    • Industry-relevant curriculum<br>
+                    • State-of-the-art laboratories<br>
+                    • Experienced faculty<br>
+                    • Regular industry interactions<br>
+                    • Project-based learning<br>
+                    • Internship opportunities
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placements Modal -->
+    <div id="placementsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Training & Placements</h2>
+                <span class="close" onclick="closeModal('placementsModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Placement Statistics</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a;">95%</div>
+                        <div>Placement Rate</div>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a;">₹8.5 LPA</div>
+                        <div>Highest Package</div>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a;">₹3.5 LPA</div>
+                        <div>Average Package</div>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: #1e3a8a;">50+</div>
+                        <div>Companies Visit</div>
+                    </div>
+                </div>
+                
+                <h3>Top Recruiting Companies</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/09/TCS-Logo.png" alt="TCS Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">TCS</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/09/Infosys-Logo.png" alt="Infosys Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">Infosys</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/09/Wipro-Logo.png" alt="Wipro Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">Wipro</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://1000logos.net/wp-content/uploads/2020/08/Cognizant-Logo.png" alt="Cognizant Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">Cognizant</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/09/Tech-Mahindra-Logo.png" alt="Tech Mahindra Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">Tech Mahindra</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/09/Capgemini-Logo.png" alt="Capgemini Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">Capgemini</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/09/Accenture-Logo.png" alt="Accenture Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">Accenture</span>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; border: 1px solid #ddd; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                        <img src="https://logos-world.net/wp-content/uploads/2020/09/IBM-Logo.png" alt="IBM Logo" style="height: 40px; object-fit: contain;">
+                        <span style="font-weight: 600; color: #333;">IBM</span>
+                    </div>
+                </div>
+                
+                <h3>Training Programs</h3>
+                <ul style="margin: 20px 0; line-height: 2;">
+                    <li> Aptitude & Reasoning Training</li>
+                    <li> Communication Skills Development</li>
+                    <li> Technical Interview Preparation</li>
+                    <li> Group Discussion & Soft Skills</li>
+                    <li> Resume Building Workshops</li>
+                    <li> Mock Interviews</li>
+                    <li> Industry Expert Sessions</li>
+                    <li>Career Guidance & Counseling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admissions Modal -->
+    <div id="admissionsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Admissions Information</h2>
+                <span class="close" onclick="closeModal('admissionsModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Admission Process</h3>
+                
+                <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h4>For B.Tech Programs</h4>
+                    <p><strong>Eligibility:</strong> 10+2 with Physics, Chemistry, Mathematics (PCM) with minimum 45% marks</p>
+                    <p><strong>Entrance Exams:</strong> AP EAMCET / JEE Main</p>
+                    <p><strong>Duration:</strong> 4 Years</p>
+                    <p><strong>Total Seats:</strong> 300 (across all branches)</p>
+                </div>
+
+                <div style="background: #f0fff0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h4>For MBA Program</h4>
+                    <p><strong>Eligibility:</strong> Graduate in any discipline with minimum 50% marks</p>
+                    <p><strong>Entrance Exams:</strong> AP ICET / CAT / MAT</p>
+                    <p><strong>Duration:</strong> 2 Years</p>
+                    <p><strong>Total Seats:</strong> 60</p>
+                </div>
+
+                <h3>Fee Structure (Annual)</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
+                        <h4>B.Tech Programs</h4>
+                        <p>Tuition Fee: ₹75,000</p>
+                        <p>Development Fee: ₹10,000</p>
+                        <p>Lab Fee: ₹5,000</p>
+                        <p><strong>Total: ₹90,000</strong></p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
+                        <h4>MBA Program</h4>
+                        <p>Tuition Fee: ₹85,000</p>
+                        <p>Development Fee: ₹10,000</p>
+                        <p>Library Fee: ₹3,000</p>
+                        <p><strong>Total: ₹98,000</strong></p>
+                    </div>
+                </div>
+
+                <h3>Scholarships Available</h3>
+                <ul style="line-height: 2;">
+                    <li>• Merit-based scholarships for top rankers</li>
+                    <li>• Need-based financial assistance</li>
+                    <li>• SC/ST fee concessions as per government norms</li>
+                    <li>• Sports quota scholarships</li>
+                    <li>• Alumni-sponsored scholarships</li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="cta-button" onclick="openModal('applicationModal')">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Admission Application Form</h2>
+                <span class="close" onclick="closeModal('applicationModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="submitApplication(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appFirstName">First Name *</label>
+                            <input type="text" id="appFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appLastName">Last Name *</label>
+                            <input type="text" id="appLastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appEmail">Email Address *</label>
+                            <input type="email" id="appEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appPhone">Phone Number *</label>
+                            <input type="tel" id="appPhone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appProgram">Program of Interest *</label>
+                        <select id="appProgram" required>
+                            <option value="">Select Program</option>
+                            <option value="cse">B.Tech - Computer Science & Engineering</option>
+                            <option value="ece">B.Tech - Electronics & Communication</option>
+                            <option value="eee">B.Tech - Electrical & Electronics</option>
+                            <option value="mech">B.Tech - Mechanical Engineering</option>
+                            <option value="civil">B.Tech - Civil Engineering</option>
+                            <option value="mba">MBA</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appDob">Date of Birth *</label>
+                            <input type="date" id="appDob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appGender">Gender *</label>
+                            <select id="appGender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appAddress">Address *</label>
+                        <textarea id="appAddress" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="app12Marks">12th Class Percentage *</label>
+                            <input type="number" id="app12Marks" min="0" max="100" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appEntrance">Entrance Exam Score</label>
+                            <input type="number" id="appEntrance">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="appComments">Additional Comments</label>
+                        <textarea id="appComments" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Faculty Modal -->
+<div id="facultyModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Our Esteemed Faculty</h2>
+      <span class="close" onclick="closeModal('facultyModal')">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+        
+        <!-- HOD 1 -->
+        <div style="background:#f9fafb; padding:20px; border-radius:10px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+          <img src="chaitu.jpg" alt="HOD CSE" style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:15px;">
+          <h3 style="color:#1e3a8a;">Dr.Chaitanya Krishna</h3>
+          <p style="color:#ef4444; font-weight:600;">HOD - Computer Science</p>
+          <p style="color:#555;">Expert in Helloworld and he teaches how to write Helloworld in all languages </p>
+        </div>
+        
+        <!-- HOD 2 -->
+        <div style="background:#f9fafb; padding:20px; border-radius:10px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+          <img src="ece.webp" alt="HOD ECE" style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:15px;">
+          <h3 style="color:#1e3a8a;">Dr. Pasupati</h3>
+          <p style="color:#ef4444; font-weight:600;">HOD - Electronics & Communication</p>
+          <p style="color:#555;">Specialized Agora in VLSI Design and Embedded Systems with multiple publications in IEEE journals.</p>
+        </div>
+        
+        <!-- HOD 3 -->
+        <div style="background:#f9fafb; padding:20px; border-radius:10px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+          <img src="eee.jpg" alt="HOD EEE" style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:15px;">
+          <h3 style="color:#1e3a8a;">Prof. Kiran Kumar alias Aggipettamacha</h3>
+          <p style="color:#ef4444; font-weight:600;">HOD - Electrical Engineering</p>
+          <p style="color:#555;">Slapping himself and Popular Scrap Researcher in Renewable Energy Systems and Smart Grid Technology with 20 years of teaching experience.</p>
+        </div>
+        
+        <!-- HOD 4 -->
+        <div style="background:#f9fafb; padding:20px; border-radius:10px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+          <img src="p8.jpg" alt="HOD Mechanical" style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:15px;">
+          <h3 style="color:#1e3a8a;">Prof.NagaTeja (Naggampeta Nagamma)</h3>
+          <p style="color:#ef4444; font-weight:600;">HOD - Mechanical Engineering</p>
+          <p style="color:#555;">Specialist in Sleeping,Thermal Engineering and CAD/CAM with extensive industry collaboration experience.</p>
+        </div>
+        
+        <!-- HOD 5 -->
+        <div style="background:#f9fafb; padding:20px; border-radius:10px; text-align:center; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+          <img src="civil.jpg" alt="HOD Civil" style="width:120px; height:120px; border-radius:50%; object-fit:cover; margin-bottom:15px;">
+          <h3 style="color:#1e3a8a;">Dr.Natanam Star Shekar</h3>
+          <p style="color:#ef4444; font-weight:600;">HOD - Civil Engineering</p>
+          <p style="color:#555;">Popular as Satakani Koduku and Expert in Structural Engineering and Sustainable Construction Practices with 12+ years of experience.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Other Modals with detailed content -->
+    <div id="visionMissionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Vision & Mission</h2>
+                <span class="close" onclick="closeModal('visionMissionModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Our Vision</h3>
+                <p style="background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0; font-style: italic;">
+                    To be a center of excellence in technical education, producing competent engineers and management professionals who contribute significantly to the technological advancement and economic development of the nation.
+                </p>
+                
+                <h3>Our Mission</h3>
+                <ul style="line-height: 2; background: #f0fff0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <li>• To provide quality technical education with emphasis on practical application</li>
+                    <li>• To foster innovation, creativity, and entrepreneurial spirit among students</li>
+                    <li>• To establish strong industry-academia partnerships for better placement opportunities</li>
+                    <li>• To develop ethical, socially responsible engineers and managers</li>
+                    <li>• To promote research and development activities in emerging technologies</li>
+                    <li>• To create a conducive learning environment for overall personality development</li>
+                </ul>
+
+                <h3>Our Values</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #1e3a8a; text-align: center;">
+                        <h4>Excellence</h4>
+                        <p>Striving for the highest standards in education and service</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #ef4444; text-align: center;">
+                        <h4>Integrity</h4>
+                        <p>Maintaining honesty and ethical behavior in all activities</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #10b981; text-align: center;">
+                        <h4>Innovation</h4>
+                        <p>Encouraging creative thinking and technological advancement</p>
+                    </div>
+                    <div style="background: white; padding: 20px; border-radius: 10px; border-left: 4px solid #f59e0b; text-align: center;">
+                        <h4>Inclusivity</h4>
+                        <p>Embracing diversity and providing equal opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional modals for other sections -->
+    <div id="establishmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>College History</h2>
+                <span class="close" onclick="closeModal('establishmentModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h3>Foundation Year - 2025</h3>
+                <p>Tillu College of Engineering and Technology was established in 2025 by Tillu Educational Society with a vision to provide world-class technical education in rural Andhra Pradesh.</p>
+                
+                <h3>Key Milestones</h3>
+                <div style="border-left: 4px solid #1e3a8a; padding-left: 20px; margin: 20px 0;">
+                    <div style="margin-bottom: 15px;"><strong>2008:</strong> College established</div>
+                    <div style="margin-bottom: 15px;"><strong>2009:</strong> AICTE approval received</div>
+                    <div style="margin-bottom: 15px;"><strong>2012:</strong> First batch graduated</div>
+                    <div style="margin-bottom: 15px;"><strong>2018:</strong> MBA program launched</div>
+                    <div style="margin-bottom: 15px;"><strong>2023:</strong> 15 years of excellence</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick modals for other features -->
+    <div id="approvalModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>AICTE Approval</h2>
+                <span class="close" onclick="closeModal('approvalModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Tillu College is approved by the All India Council for Technical Education (AICTE), New Delhi, ensuring quality education standards and recognized degrees.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="affiliationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>JNTU Affiliation</h2>
+                <span class="close" onclick="closeModal('affiliationModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Our college is affiliated with Jawaharlal Nehru Technological University, Kakinada, one of the premier technological universities in India.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="placementStatsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Placement Statistics</h2>
+                <span class="close" onclick="closeModal('placementStatsModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Our dedicated Training & Placement Cell ensures 95% placement success with top companies recruiting our graduates every year.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Management
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Navigation Functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Form Submissions
+        function submitContactForm(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        function submitApplication(event) {
+            event.preventDefault();
+            alert('Application submitted successfully! You will receive a confirmation email shortly.');
+            closeModal('applicationModal');
+            event.target.reset();
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Any initialization code here
+            console.log('ABR College website loaded successfully!');
+        });
+    </script>
+</body>
+</html> 
